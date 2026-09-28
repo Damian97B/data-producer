@@ -44,17 +44,18 @@ export class ProducerService implements OnModuleInit, OnModuleDestroy {
 
   async publishTemperature(temperature: number) {
     await this.producer.send({
-        topic: this.topic,
-        messages: [
+      topic: this.topic,
+      messages: [
         {
-            value: JSON.stringify({
-            temperature,
-            timestamp: new Date().toISOString(),
-            }),
+          key: 'engine-temperature',
+          value: String(temperature),
+          headers: {
+            TIMESTAMP: new Date().toISOString(),
+          },
         },
-        ],
+      ],
     });
 
-    console.log(`Added temperature: ${temperature} `);
-    }
+    console.log(`Added temperature: ${temperature}`);
+  }
 }
