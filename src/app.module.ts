@@ -7,9 +7,10 @@ import { ProducerService } from './service/producer/producer.service.js';
 import { ConsumerService } from './service/consumer/consumer.service.js';
 import { EngineController } from './controller/engine/engine.controller.js';
 import { EngineModule } from './engine/engine.module.js';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
-  imports: [KafkaModule, EngineModule],
+  imports: [KafkaModule, EngineModule, ScheduleModule.forRoot()],
   controllers: [AppController, UsersController, EngineController],
   providers: [AppService, ProducerService, ConsumerService],
 })

@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { Kafka } from 'kafkajs';
 import { ProducerService } from '../service/producer/producer.service.js';
+import { DataProducerJob } from '../scheduler/DataProducerJob.js';
 
 @Module({
   providers: [
@@ -14,6 +15,7 @@ import { ProducerService } from '../service/producer/producer.service.js';
       },
     },
     ProducerService,
+    DataProducerJob,
   ],
   exports: ['KAFKA', ProducerService],
 })
