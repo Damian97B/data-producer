@@ -10,7 +10,7 @@ import { DataProducerJob } from '../scheduler/DataProducerJob.js';
       useFactory: () => {
         return new Kafka({
           clientId: 'data-producer',
-          brokers: ['localhost:29092'],
+          brokers: (process.env.KAFKA_BROKERS ?? 'localhost:29092').split(','),
         });
       },
     },
